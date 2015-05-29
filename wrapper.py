@@ -2,14 +2,20 @@ __author__ = 'croman'
 # -*- coding: utf-8 -*-
 
 
-import subprocess
-import rdflib
 import codecs
 
 import ritter_ner
 import stanford_ner
 import validator
 import resultstonif
+import polyglot_ner
+
+
+from sklearn.cross_validation import cross_val_score
+from sklearn.datasets import load_iris
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 def nif(niffile, ner='ritter'):
 
@@ -18,6 +24,8 @@ def nif(niffile, ner='ritter'):
     elif ner == 'stanford':
         results = stanford_ner.ner(niffile+'.ttl', "nif")
         print results
+    elif ner == 'polyglot':
+        results = polyglot_ner.ner(niffile+'.ttl', 'nif')
     print "NER completado"
 
     nifresult = resultstonif.convert(results, niffile+'.xml')
@@ -33,6 +41,9 @@ def score(corpus, ner='ritter'):
         print "NER completado"
     elif ner == 'stanford':
         results = stanford_ner.ner(corpus+'.ttl', "nif")
+        print "NER completado"
+    elif ner == 'polyglot':
+        results = polyglot_ner.ner(corpus+'.ttl', 'nif')
         print "NER completado"
 
 
@@ -50,9 +61,20 @@ def score(corpus, ner='ritter'):
 
     return scores
 
-#print 'Brian: \n'+score('Brian Collection')
-#print '\nMena: \n'+score('Mena Collection')
-#print '\nMicroposts2014: \n'+score('Microposts2014_Collection_train')
+def adaboost(corpus):
+    vectorizer = TfidfVectorizer()
+    #vectors = vectorizer.fit_transform()
+    iris = load_iris()
+    print iris.data
+    clf = AdaBoostClassifier(n_estimators=100)
+    scores = cross_val_score(clf, iris.data, iris.target)
+    print scores.mean()
+
+print 'Brian: \n'+score('Brian Collection')
+print '\nMena: \n'+score('Mena Collection')
+print '\nMicroposts2014: \n'+score('Microposts2014_Collection_train')
 
 #print 'Brian: \n'+nif('Mena Collection')
-print nif('Brian Collection', 'stanford')
+#print nif('Brian Collection', 'stanford')
+#print adaboost('Brian Collection')
+#print nif('Mena Collection', 'polyglot')

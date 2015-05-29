@@ -42,8 +42,6 @@ def ner(datasetfile, format):
         tweetlist.append(t.split())
 
     results = ''
-    print tweetlist[1]
-    print tweetlist[2]
 
     tagged = st.tag_sents(tweetlist)
     print len(tagged)
