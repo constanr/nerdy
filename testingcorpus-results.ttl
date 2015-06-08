@@ -9,3 +9,45 @@
 	a nif:String , nif:Context , nif:RFC5147String ;
 	nif:sourceUrl <https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/> .
 
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000000#char=0,>
+	a nif:String , nif:Context , nif:RFC5147String ;
+	nif:isString """@Rammi What was wrong with it ?""" ;
+	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
+	nif:endIndex "31"^^xsd:nonNegativeInteger .
+
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000001#char=0,>
+	a nif:String , nif:Context , nif:RFC5147String ;
+	nif:isString """Slasher operator accused of sparking bushfire : A slasher operator has been fined after the    ( .. http://bit.ly/3iGHiz""" ;
+	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
+	nif:endIndex "120"^^xsd:nonNegativeInteger .
+
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000002#char=0,>
+	a nif:String , nif:Context , nif:RFC5147String ;
+	nif:isString """Deadly bushfire probe ' could take a year ' http://bit.ly/QGFF #bushfires""" ;
+	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
+	nif:endIndex "73"^^xsd:nonNegativeInteger .
+
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000003#char=0,>
+	a nif:String , nif:Context , nif:RFC5147String ;
+	nif:isString """For personal , emotional and financial support visit the Dept of   website or call the Bushfire Information Line on 1800 240 667""" ;
+	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
+	nif:endIndex "128"^^xsd:nonNegativeInteger .
+
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000004#char=0,>
+	a nif:String , nif:Context , nif:RFC5147String ;
+	nif:isString """Alert message for Maroondah/Yarra Complex for residents to be ready to activate bushfire survival plans if needed http://bit.ly/qVp8""" ;
+	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
+	nif:endIndex "132"^^xsd:nonNegativeInteger .
+
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000005#char=0,>
+	a nif:String , nif:Context , nif:RFC5147String ;
+	nif:isString """' Money no issue ' in bushfire rebuild : Brumby :   says  will do whatever it takes to rebuild the .. http://bit.ly/tZ3o""" ;
+	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
+	nif:endIndex "120"^^xsd:nonNegativeInteger .
+
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000006#char=0,>
+	a nif:String , nif:Context , nif:RFC5147String ;
+	nif:isString """@fitzzz it wont matter when all the banks are nationalized to get us out of the recession .""" ;
+	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
+	nif:endIndex "91"^^xsd:nonNegativeInteger .
+

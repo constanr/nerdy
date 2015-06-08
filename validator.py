@@ -77,6 +77,7 @@ def validate(goldenset, results):
 
                 if p.endswith('anchorOf'):
                     print o
+                    print s
                     id = s.split('#')[0]
                     print id
                     print

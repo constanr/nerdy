@@ -102,7 +102,7 @@ def voting(corpus):
             else:
                 vote = 'O'
             voting_results += ner_results[0].splitlines()[x].split()[y].rsplit('/', 1)[0]+'/'+vote+' '
-        voting_results += '\n'
+        voting_results += '||'+ner_results[0].splitlines()[x].split('||')[1]+'\n'
 
     return voting_results
 
