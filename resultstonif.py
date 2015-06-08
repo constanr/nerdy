@@ -27,6 +27,8 @@ def convert(nerfile, corpusfile):
         tweetids.append(line.split('||', 2)[1])
 
         for word in words:
+
+
             if word.__contains__('B-'):
                 w = word.split("/B-",1)[0]
                 tweet += w

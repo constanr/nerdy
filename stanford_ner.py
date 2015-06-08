@@ -4,12 +4,16 @@ __author__ = 'croman'
 import rdflib
 from lxml import etree
 from nltk.tag.stanford import NERTagger
+import ner
 
-def ner(datasetfile, format):
+def ner(datasetfile, format, language):
 
     tweets = ""
     tweetids = []
-    st = NERTagger('/usr/share/stanford-ner/classifiers/english.all.3class.distsim.crf.ser.gz', '/usr/share/stanford-ner/stanford-ner.jar', encoding='utf8')
+    if language == 'english':
+        st = NERTagger('classifiers/english.all.3class.distsim.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
+    elif language == 'spanish':
+        st = NERTagger('classifiers/spanish.ancora.distsim.s512.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
 
     if format == 'xml':
 
@@ -36,26 +40,42 @@ def ner(datasetfile, format):
             tweetids.append(key)
             tweets += tweetdict[key]+'\n'
         tweets = tweets.encode('utf-8')
+        print tweets
 
     tweetlist = []
-    for t in tweets.split('\n'):
-        tweetlist.append(t.split())
+    for t in tweets.splitlines():
+        newtweet = []
+        for word in t.split():
+            newword = u''
+            if word.endswith(",") or word.endswith("."):
+                newtweet.append(word[:-1])
+                newtweet.append(word[-1])
+            else:
+                newtweet.append(word)
+        print newtweet
+        tweetlist.append(newtweet)
+
 
     results = ''
+    tagged = []
 
-    tagged = st.tag_sents(tweetlist)
+    for tweet in tweetlist:
+        tagged.append(st.tag(tweet))
+        print tagged[-1]
     print len(tagged)
     for x in range(0, len(tagged)):
         inEntity = False
-        for (word, entity) in tagged[x]:
-            if entity != 'O' and inEntity:
-                entity = 'I-'+entity
-            elif entity != 'O' and inEntity == False:
-                entity = 'B-'+entity
-                inEntity = True
-            else:
-                inEntity = False
-            results += word + '/' + entity + ' '
+        for line in tagged[x]:
+            for (word, entity) in line:
+                if entity != 'O' and inEntity:
+                    entity = 'I-'+entity
+                elif entity != 'O' and inEntity == False:
+                    entity = 'B-'+entity
+                    inEntity = True
+                else:
+                    inEntity = False
+                results += word + '/' + entity + ' '
         results += "||"+tweetids[x]+"\n"
 
+    print results
     return results

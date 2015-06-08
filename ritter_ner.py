@@ -65,5 +65,5 @@ def ner(dataset, format):
             line = lines[x]+" ||"+tweetids[x]+"\n"
             idresults += line
 
-    print idresults
+    #print idresults
     return idresults

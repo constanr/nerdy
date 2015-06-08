@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TweetsCollection>
+<CollectionName>Brian Collection</CollectionName>
+<Tweets>
+<Tweet>
+<TweetId>1000000000000</TweetId>
+<TweetText>@Rammi What was wrong with it?</TweetText>
+<TweetGroup>4</TweetGroup>
+<Mentions>
+</Mentions>
+</Tweet>
+<Tweet>
+<TweetId>1000000000001</TweetId>
+<TweetText>Slasher operator accused of sparking bushfire: A slasher operator has been fined after the Rural Fire Services (.. http://bit.ly/3iGHiz</TweetText>
+<TweetGroup>1</TweetGroup>
+<Mentions>
+<Mention>
+<Text>Rural Fire Services</Text>
+<StartIndx>91</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/New_South_Wales_Rural_Fire_Service</Entity>
+</Mention>
+</Mentions>
+</Tweet>
+<Tweet>
+<TweetId>1000000000002</TweetId>
+<TweetText>Deadly bushfire probe 'could take a year' http://bit.ly/QGFF #bushfires</TweetText>
+<TweetGroup>1</TweetGroup>
+<Mentions>
+</Mentions>
+</Tweet>
+<Tweet>
+<TweetId>1000000000003</TweetId>
+<TweetText>For personal, emotional and financial support visit the Dept of Human Services website or call the Bushfire Information Line on 1800 240 667</TweetText>
+<TweetGroup>1</TweetGroup>
+<Mentions>
+<Mention>
+<Text>Bushfire Information Line</Text>
+<StartIndx>99</StartIndx>
+<Entity>http://www.dse.vic.gov.au/fire-and-other-emergencies/fires-today-incident-summary/fire-information-services/victorian-bushfire-information-line</Entity>
+</Mention>
+<Mention>
+<Text>Dept of Human Services</Text>
+<StartIndx>56</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Department_of_Human_Services_(Australia)</Entity>
+</Mention>
+</Mentions>
+</Tweet>
+<Tweet>
+<TweetId>1000000000004</TweetId>
+<TweetText>Alert message for Maroondah/Yarra Complex for residents to be ready to activate bushfire survival plans if needed  http://bit.ly/qVp8</TweetText>
+<TweetGroup>1</TweetGroup>
+<Mentions>
+<Mention>
+<Text>Yarra</Text>
+<StartIndx>28</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/City_of_Yarra</Entity>
+</Mention>
+<Mention>
+<Text>Maroondah</Text>
+<StartIndx>18</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/City_of_Maroondah</Entity>
+</Mention>
+</Mentions>
+</Tweet>
+<Tweet>
+<TweetId>1000000000005</TweetId>
+<TweetText>'Money no issue' in bushfire rebuild: Brumby: John Brumby says Victoria will do whatever it takes to rebuild the.. http://bit.ly/tZ3o</TweetText>
+<TweetGroup>1</TweetGroup>
+<Mentions>
+<Mention>
+<Text>Victoria</Text>
+<StartIndx>63</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Victoria_(Australia)</Entity>
+</Mention>
+<Mention>
+<Text>John Brumby</Text>
+<StartIndx>46</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/John_Brumby</Entity>
+</Mention>
+<Mention>
+<Text>Brumby</Text>
+<StartIndx>38</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/John_Brumby</Entity>
+</Mention>
+</Mentions>
+</Tweet>
+<Tweet>
+<TweetId>1000000000006</TweetId>
+<TweetText>@fitzzz it wont matter when all the banks are nationalized to get us out of the recession.</TweetText>
+<TweetGroup>3</TweetGroup>
+<Mentions>
+</Mentions>
+</Tweet>
+</Tweets>
+</TweetsCollection>

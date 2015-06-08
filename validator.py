@@ -67,6 +67,7 @@ def validate(goldenset, results):
             for s, p, o in a:
                 if p.endswith('anchorOf'):
                     id = s.split('#')[0]
+                    print id
                     if not annotatedmentions.has_key(id):
                         annotatedmentions[id] = []
                     annotatedmentions[id].append(o)
@@ -75,7 +76,10 @@ def validate(goldenset, results):
             for s, p, o in r:
 
                 if p.endswith('anchorOf'):
+                    print o
                     id = s.split('#')[0]
+                    print id
+                    print
 
                     if id in annotatedmentions.keys():
                         #Comprueba las menciones que coinciden completamente

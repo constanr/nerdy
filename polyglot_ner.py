@@ -9,7 +9,7 @@ import subprocess
 import tweetstotxt
 import codecs
 
-def ner(datasetfile, format):
+def ner(datasetfile, format, language):
 
     tweetids = []
     tweets = ''
@@ -65,7 +65,7 @@ def ner(datasetfile, format):
         detector = Detector(t.decode('utf-8'))
         print text.string.encode('utf-8')
         print (detector.language)"""
-    p = subprocess.Popen(['polyglot', '--lang', 'es', 'ner', '--input', datasetfile.split('.ttl')[0]+'.txt'], stdout=subprocess.PIPE)
+    p = subprocess.Popen(['polyglot', '--lang', language, 'ner', '--input', datasetfile.split('.ttl')[0]+'.txt'], stdout=subprocess.PIPE)
     output,err = p.communicate()
     results = ''
     tweetoutput = output.split('\n\n')
