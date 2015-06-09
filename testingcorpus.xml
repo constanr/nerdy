@@ -1,94 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TweetsCollection>
-<CollectionName>Brian Collection</CollectionName>
+<CollectionName>Mena Collection</CollectionName>
 <Tweets>
 <Tweet>
-<TweetId>1000000000000</TweetId>
-<TweetText>@Rammi What was wrong with it?</TweetText>
-<TweetGroup>4</TweetGroup>
-<Mentions>
-</Mentions>
-</Tweet>
-<Tweet>
-<TweetId>1000000000001</TweetId>
-<TweetText>Slasher operator accused of sparking bushfire: A slasher operator has been fined after the Rural Fire Services (.. http://bit.ly/3iGHiz</TweetText>
-<TweetGroup>1</TweetGroup>
+<TweetId>5292951060090880</TweetId>
+<TweetText>RT @EgyTweets RT @CandiCunningham: There are more pyramids in Peru than in Egypt #coolfacts</TweetText>
+<TweetGroup>0</TweetGroup>
 <Mentions>
 <Mention>
-<Text>Rural Fire Services</Text>
-<StartIndx>91</StartIndx>
-<Entity>http://en.wikipedia.org/wiki/New_South_Wales_Rural_Fire_Service</Entity>
-</Mention>
-</Mentions>
-</Tweet>
-<Tweet>
-<TweetId>1000000000002</TweetId>
-<TweetText>Deadly bushfire probe 'could take a year' http://bit.ly/QGFF #bushfires</TweetText>
-<TweetGroup>1</TweetGroup>
-<Mentions>
-</Mentions>
-</Tweet>
-<Tweet>
-<TweetId>1000000000003</TweetId>
-<TweetText>For personal, emotional and financial support visit the Dept of Human Services website or call the Bushfire Information Line on 1800 240 667</TweetText>
-<TweetGroup>1</TweetGroup>
-<Mentions>
-<Mention>
-<Text>Bushfire Information Line</Text>
-<StartIndx>99</StartIndx>
-<Entity>http://www.dse.vic.gov.au/fire-and-other-emergencies/fires-today-incident-summary/fire-information-services/victorian-bushfire-information-line</Entity>
+<Text>pyramids</Text>
+<StartIndx>50</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Egyptian_pyramids</Entity>
 </Mention>
 <Mention>
-<Text>Dept of Human Services</Text>
-<StartIndx>56</StartIndx>
-<Entity>http://en.wikipedia.org/wiki/Department_of_Human_Services_(Australia)</Entity>
+<Text>Peru</Text>
+<StartIndx>62</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Peru</Entity>
+</Mention>
+<Mention>
+<Text>Egypt</Text>
+<StartIndx>75</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Egypt</Entity>
 </Mention>
 </Mentions>
 </Tweet>
 <Tweet>
-<TweetId>1000000000004</TweetId>
-<TweetText>Alert message for Maroondah/Yarra Complex for residents to be ready to activate bushfire survival plans if needed  http://bit.ly/qVp8</TweetText>
-<TweetGroup>1</TweetGroup>
+<TweetId>5329362496782336</TweetId>
+<TweetText>RT @OptaJoe: 72% - Man Utd have won 72% of Premier League games with Wayne Rooney starting since Aug 2009 and just 47% without him. Hole.</TweetText>
+<TweetGroup>0</TweetGroup>
 <Mentions>
 <Mention>
-<Text>Yarra</Text>
-<StartIndx>28</StartIndx>
-<Entity>http://en.wikipedia.org/wiki/City_of_Yarra</Entity>
+<Text>Premier League</Text>
+<StartIndx>43</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Premier_League</Entity>
 </Mention>
 <Mention>
-<Text>Maroondah</Text>
-<StartIndx>18</StartIndx>
-<Entity>http://en.wikipedia.org/wiki/City_of_Maroondah</Entity>
+<Text>Man Utd</Text>
+<StartIndx>19</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Manchester_United_F.C.</Entity>
+</Mention>
+<Mention>
+<Text>Wayne Rooney</Text>
+<StartIndx>69</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Wayne_Rooney</Entity>
 </Mention>
 </Mentions>
 </Tweet>
 <Tweet>
-<TweetId>1000000000005</TweetId>
-<TweetText>'Money no issue' in bushfire rebuild: Brumby: John Brumby says Victoria will do whatever it takes to rebuild the.. http://bit.ly/tZ3o</TweetText>
-<TweetGroup>1</TweetGroup>
+<TweetId>5418441615872000</TweetId>
+<TweetText>RT @IMDb: Here's a clip of Francis Ford Coppola accepting the Irving Thalberg Award at the 2010 Governors Awards. http://imdb.to/dqpMXP</TweetText>
+<TweetGroup>0</TweetGroup>
 <Mentions>
 <Mention>
-<Text>Victoria</Text>
-<StartIndx>63</StartIndx>
-<Entity>http://en.wikipedia.org/wiki/Victoria_(Australia)</Entity>
+<Text>Governors Awards</Text>
+<StartIndx>96</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Governors_Awards</Entity>
 </Mention>
 <Mention>
-<Text>John Brumby</Text>
-<StartIndx>46</StartIndx>
-<Entity>http://en.wikipedia.org/wiki/John_Brumby</Entity>
+<Text>Francis Ford Coppola</Text>
+<StartIndx>27</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Francis_Ford_Coppola</Entity>
 </Mention>
 <Mention>
-<Text>Brumby</Text>
-<StartIndx>38</StartIndx>
-<Entity>http://en.wikipedia.org/wiki/John_Brumby</Entity>
+<Text>Irving Thalberg Award</Text>
+<StartIndx>62</StartIndx>
+<Entity>http://en.wikipedia.org/wiki/Irving_G._Thalberg_Memorial_Award</Entity>
 </Mention>
-</Mentions>
-</Tweet>
-<Tweet>
-<TweetId>1000000000006</TweetId>
-<TweetText>@fitzzz it wont matter when all the banks are nationalized to get us out of the recession.</TweetText>
-<TweetGroup>3</TweetGroup>
-<Mentions>
 </Mentions>
 </Tweet>
 </Tweets>

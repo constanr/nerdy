@@ -67,13 +67,14 @@ def validate(goldenset, results):
             for s, p, o in a:
                 if p.endswith('anchorOf'):
                     id = s.split('#')[0]
-                    print id
+                    print 'Golden set ',id
                     if not annotatedmentions.has_key(id):
                         annotatedmentions[id] = []
                     annotatedmentions[id].append(o)
 
             #Compara las menciones que obtiene el sistema con las anotadas en el golden set
             for s, p, o in r:
+                print s,p,o
 
                 if p.endswith('anchorOf'):
                     print o

@@ -9,108 +9,92 @@
 	a nif:String , nif:Context , nif:RFC5147String ;
 	nif:sourceUrl <https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/> .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000000#char=0,>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5292951060090880#char=0,>
 	a nif:String , nif:Context , nif:RFC5147String ;
-	nif:isString """@Rammi What was wrong with it ?""" ;
+	nif:isString """RT @EgyTweets RT @CandiCunningham : There are more pyramids in Peru than in Egypt #coolfacts""" ;
 	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
-	nif:endIndex "31"^^xsd:nonNegativeInteger .
+	nif:endIndex "92"^^xsd:nonNegativeInteger .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000001#char=0,>
-	a nif:String , nif:Context , nif:RFC5147String ;
-	nif:isString """Slasher operator accused of sparking bushfire : A slasher operator has been fined after the Rural Fire Services ( .. http://bit.ly/3iGHiz""" ;
-	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
-	nif:endIndex "137"^^xsd:nonNegativeInteger .
-
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000001#char=92,111>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5292951060090880#char=51,59>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """Rural Fire Services""" ;
-	nif:beginIndex "92"^^xsd:nonNegativeInteger ;
-	nif:endIndex "111"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """pyramids""" ;
+	nif:beginIndex "51"^^xsd:nonNegativeInteger ;
+	nif:endIndex "59"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/New_South_Wales_Rural_Fire_Service" .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Egyptian_pyramids" .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000002#char=0,>
-	a nif:String , nif:Context , nif:RFC5147String ;
-	nif:isString """Deadly bushfire probe ' could take a year ' http://bit.ly/QGFF #bushfires""" ;
-	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
-	nif:endIndex "73"^^xsd:nonNegativeInteger .
-
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000003#char=0,>
-	a nif:String , nif:Context , nif:RFC5147String ;
-	nif:isString """For personal , emotional and financial support visit the Dept of Human Services website or call the Bushfire Information Line on 1800 240 667""" ;
-	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
-	nif:endIndex "141"^^xsd:nonNegativeInteger .
-
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000003#char=100,125>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5292951060090880#char=63,67>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """Bushfire Information Line""" ;
-	nif:beginIndex "100"^^xsd:nonNegativeInteger ;
-	nif:endIndex "125"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """Peru""" ;
+	nif:beginIndex "63"^^xsd:nonNegativeInteger ;
+	nif:endIndex "67"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://www.dse.vic.gov.au/fire-and-other-emergencies/fires-today-incident-summary/fire-information-services/victorian-bushfire-information-line" .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Peru" .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000003#char=57,79>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5292951060090880#char=76,81>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """Dept of Human Services""" ;
-	nif:beginIndex "57"^^xsd:nonNegativeInteger ;
-	nif:endIndex "79"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """Egypt""" ;
+	nif:beginIndex "76"^^xsd:nonNegativeInteger ;
+	nif:endIndex "81"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Department_of_Human_Services_(Australia)" .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Egypt" .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000004#char=0,>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5329362496782336#char=0,>
 	a nif:String , nif:Context , nif:RFC5147String ;
-	nif:isString """Alert message for Maroondah/Yarra Complex for residents to be ready to activate bushfire survival plans if needed http://bit.ly/qVp8""" ;
+	nif:isString """RT @OptaJoe : 72% - Man Utd have won 72% of Premier League games with Wayne Rooney starting since Aug 2009 and just 47% without him . Hole .""" ;
 	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
-	nif:endIndex "132"^^xsd:nonNegativeInteger .
+	nif:endIndex "140"^^xsd:nonNegativeInteger .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000004#char=28,33>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5329362496782336#char=44,58>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """Yarra""" ;
-	nif:beginIndex "28"^^xsd:nonNegativeInteger ;
-	nif:endIndex "33"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """Premier League""" ;
+	nif:beginIndex "44"^^xsd:nonNegativeInteger ;
+	nif:endIndex "58"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/City_of_Yarra" .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Premier_League" .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000004#char=18,27>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5329362496782336#char=20,27>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """Maroondah""" ;
-	nif:beginIndex "18"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """Man Utd""" ;
+	nif:beginIndex "20"^^xsd:nonNegativeInteger ;
 	nif:endIndex "27"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/City_of_Maroondah" .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Manchester_United_F.C." .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000005#char=0,>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5329362496782336#char=70,82>
+	a nif:String , nif:RFC5147String ;
+	nif:anchorOf """Wayne Rooney""" ;
+	nif:beginIndex "70"^^xsd:nonNegativeInteger ;
+	nif:endIndex "82"^^xsd:nonNegativeInteger ;
+	a nif:Phrase ;
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Wayne_Rooney" .
+
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5418441615872000#char=0,>
 	a nif:String , nif:Context , nif:RFC5147String ;
-	nif:isString """' Money no issue ' in bushfire rebuild : Brumby : John Brumby says Victoria will do whatever it takes to rebuild the .. http://bit.ly/tZ3o""" ;
+	nif:isString """RT @IMDb : Here 's a clip of Francis Ford Coppola accepting the Irving Thalberg Award at the 2010 Governors Awards . http://imdb.to/dqpMXP""" ;
 	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
 	nif:endIndex "138"^^xsd:nonNegativeInteger .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000005#char=67,75>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5418441615872000#char=98,114>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """Victoria""" ;
-	nif:beginIndex "67"^^xsd:nonNegativeInteger ;
-	nif:endIndex "75"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """Governors Awards""" ;
+	nif:beginIndex "98"^^xsd:nonNegativeInteger ;
+	nif:endIndex "114"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Victoria_(Australia)" .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Governors_Awards" .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000005#char=50,61>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5418441615872000#char=29,49>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """John Brumby""" ;
-	nif:beginIndex "50"^^xsd:nonNegativeInteger ;
-	nif:endIndex "61"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """Francis Ford Coppola""" ;
+	nif:beginIndex "29"^^xsd:nonNegativeInteger ;
+	nif:endIndex "49"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/John_Brumby" .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Francis_Ford_Coppola" .
 
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000005#char=41,47>
+<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/5418441615872000#char=64,85>
 	a nif:String , nif:RFC5147String ;
-	nif:anchorOf """Brumby""" ;
-	nif:beginIndex "41"^^xsd:nonNegativeInteger ;
-	nif:endIndex "47"^^xsd:nonNegativeInteger ;
+	nif:anchorOf """Irving Thalberg Award""" ;
+	nif:beginIndex "64"^^xsd:nonNegativeInteger ;
+	nif:endIndex "85"^^xsd:nonNegativeInteger ;
 	a nif:Phrase ;
-	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/John_Brumby" .
-
-<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/testingcorpus.xml/1000000000006#char=0,>
-	a nif:String , nif:Context , nif:RFC5147String ;
-	nif:isString """@fitzzz it wont matter when all the banks are nationalized to get us out of the recession .""" ;
-	nif:beginIndex "0"^^xsd:nonNegativeInteger ;
-	nif:endIndex "91"^^xsd:nonNegativeInteger .
+	itsrdf:taIdentRef "http://en.wikipedia.org/wiki/Irving_G._Thalberg_Memorial_Award" .

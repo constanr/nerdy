@@ -54,7 +54,6 @@ def score(corpus, ner='stanford-en'):
         results = voting(corpus)
         print "NER completado"
 
-
     nifresults = resultstonif.convert(results, corpus+'.xml')
     print "Conversión a NIF completada"
     #print nifresults
@@ -91,19 +90,30 @@ def voting(corpus):
 
     voting_results = ''
     for x in range(0, len(ner_results[0].splitlines())):
+        inEntity = False
+        print x, len(ner_results[0].splitlines())
+        print ner_results[0].splitlines()[x].split('||')[0]
         for y in range(0, len(ner_results[0].splitlines()[x].split('||')[0].split())):
             vote = 0
+            print y, len(ner_results[0].splitlines()[x].split('||')[0].split())
             for z in range(0, len(ner_results)):
-                entities = ner_results[z].splitlines()[x].split()[y]
+                print ner_results[0].splitlines()[x].split('||')[0].split()[y]
+                entities = ner_results[z].splitlines()[x].split('||')[0].split()[y]
                 if not entities.endswith('/O'):
                     vote += 1
             if vote > 1:
-                vote = 'ENTITY'
+                if not inEntity:
+                    vote = 'B-ENTITY'
+                    inEntity = True
+                else:
+                    vote = 'I-ENTITY'
             else:
                 vote = 'O'
+                inEntity = False
             voting_results += ner_results[0].splitlines()[x].split()[y].rsplit('/', 1)[0]+'/'+vote+' '
         voting_results += '||'+ner_results[0].splitlines()[x].split('||')[1]+'\n'
 
+    print voting_results
     return voting_results
 
 #print 'Brian: \n'+score('Brian Collection')
