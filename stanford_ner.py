@@ -4,7 +4,7 @@ __author__ = 'croman'
 import rdflib
 from lxml import etree
 from nltk.tag.stanford import NERTagger
-import ner
+import re
 
 def ner(datasetfile, format, language):
 
@@ -20,7 +20,7 @@ def ner(datasetfile, format, language):
         dataset = etree.parse(datasetfile)
         for tweet in dataset.xpath('//Tweet'):
             tweetText = tweet.xpath('./TweetText/text()')[0]
-            tweets += tweetText+"\n"
+            tweets += ' '.join(re.findall(r"[\w:/!#$%&*+,\-:;?@^_`{|}~.]+|[\"'()[\]<=>]", tweetText))+"\n"
             tweetids.append(tweet.xpath('./TweetId/text()')[0])
 
         tweets = tweets.encode('utf-8')
@@ -34,7 +34,7 @@ def ner(datasetfile, format, language):
         for s, p, o in a:
             if s.endswith(',') and p.endswith('isString'):
                 tweetid = s.split('#')[0].split('.xml/')[1]
-                tweetdict[tweetid] = o
+                tweetdict[tweetid] = ' '.join(re.findall(r"[\w:/!#$%&*+,\-:;?@^_`{|}~.]+|[\"'()[\]<=>]", o))
 
         for key in sorted(tweetdict):
             tweetids.append(key)
@@ -47,7 +47,7 @@ def ner(datasetfile, format, language):
         newtweet = []
         for word in t.split():
             newword = u''
-            if word.endswith(",") or word.endswith("."):
+            if word.endswith(",") or word.endswith(".") or word.endswith(")") or word.endswith("\'"):
                 newtweet.append(word[:-1])
                 newtweet.append(word[-1])
             else:

@@ -39,7 +39,7 @@ def nif(niffile, ner='polyglot'):
 def score(corpus, ner='stanford-en'):
 
     if ner == 'ritter':
-        results = ritter_ner.ner(corpus+'.xml', "xml")
+        results = ritter_ner.ner(corpus+'.ttl', "nif")
         print "NER completado"
     elif ner == 'stanford-en':
         results = stanford_ner.ner(corpus+'.ttl', "nif", 'english')
@@ -79,25 +79,29 @@ def adaboost(corpus):
 
 def voting(corpus):
     ner_results = []
-    ner_results.append(ritter_ner.ner(corpus+'.xml', 'xml'))
+    ner_results.append(ritter_ner.ner(corpus+'.ttl', 'nif'))
     ner_results.append(stanford_ner.ner(corpus+'.ttl', 'nif', 'english'))
     ner_results.append(polyglot_ner.ner(corpus+'.ttl', 'nif', 'en'))
     #Ordenar por ids?
 
-    for ner in ner_results:
-        #print ner.splitlines()
-        print len(ner.splitlines())
+    for x in range(0, len(ner_results[0].splitlines())):
+        if len(ner_results[0].splitlines()[x].split())!=len(ner_results[1].splitlines()[x].split()):
+            print 'CONFLICT: ', len(ner_results[0].splitlines()[x].split()), len(ner_results[1].splitlines()[x].split())
+            print ner_results[0].splitlines()[x]
+            print ner_results[1].splitlines()[x]
+
+
 
     voting_results = ''
     for x in range(0, len(ner_results[0].splitlines())):
         inEntity = False
-        print x, len(ner_results[0].splitlines())
+        print 'tweet: ',x, len(ner_results[0].splitlines())
         print ner_results[0].splitlines()[x].split('||')[0]
         for y in range(0, len(ner_results[0].splitlines()[x].split('||')[0].split())):
             vote = 0
-            print y, len(ner_results[0].splitlines()[x].split('||')[0].split())
             for z in range(0, len(ner_results)):
-                print ner_results[0].splitlines()[x].split('||')[0].split()[y]
+                print 'word: ',y, len(ner_results[z].splitlines()[x].split('||')[0].split())
+                print ner_results[z].splitlines()[x].split('||')[0].split()[y]
                 entities = ner_results[z].splitlines()[x].split('||')[0].split()[y]
                 if not entities.endswith('/O'):
                     vote += 1
@@ -121,7 +125,7 @@ def voting(corpus):
 #print '\nMicroposts2014: \n'+score('Microposts2014_Collection_train')
 #print 'Test: \n'+score('testingcorpus')
 #print voting('testingcorpus')
-print score('testingcorpus', 'voting')
+print score('Mena Collection2', 'voting')
 
 #print 'Brian: \n'+nif('Mena Collection')
 #print nif('Brian Collection', 'stanford')

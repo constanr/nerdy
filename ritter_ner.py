@@ -8,6 +8,7 @@ import codecs
 from lxml import etree
 
 import rdflib
+import re
 
 
 def ner(dataset, format):
@@ -22,7 +23,7 @@ def ner(dataset, format):
             dataset = etree.parse(datasetfile)
             for tweet in dataset.xpath('//Tweet'):
                 tweetText = tweet.xpath('./TweetText/text()')[0]
-                tweets += tweetText+"\n"
+                tweets += ' '.join(re.findall(r"[\w:/!#$%&*+,\-:;?@^_`{|}~.]+|[\"'().[\]<=>]", tweetText))+"\n"
                 tweetids.append(tweet.xpath('./TweetId/text()')[0])
 
             tweets = tweets.encode('utf-8')
@@ -36,7 +37,7 @@ def ner(dataset, format):
             for s, p, o in a:
                 if s.endswith(',') and p.endswith('isString'):
                     id = s.split('#')[0].split('.xml/')[1]
-                    tweetdict[id] = o
+                    tweetdict[id] = ' '.join(re.findall(r"[\w:/!#$%&*+,\-:;?@^_`{|}~.]+|[\"'().[\]<=>]", o))
                     #tweetids.append(id)
 
             for key in sorted(tweetdict):
@@ -67,3 +68,5 @@ def ner(dataset, format):
 
     #print idresults
     return idresults
+
+print ner('Mena Collection.ttl', 'nif')

@@ -8,6 +8,7 @@ from lxml import etree
 import subprocess
 import tweetstotxt
 import codecs
+import re
 
 def ner(datasetfile, format, language):
 
@@ -19,7 +20,7 @@ def ner(datasetfile, format, language):
         dataset = etree.parse(datasetfile)
         for tweet in dataset.xpath('//Tweet'):
             tweetText = tweet.xpath('./TweetText/text()')[0]
-            tweets += tweetText+"\n"
+            tweets += ' '.join(re.findall(r"[\w:/!#$%&*+,\-:;?@^_`{|}~.]+|[\"'()[\]<=>]", tweetText))+"\n"
             tweetids.append(tweet.xpath('./TweetId/text()')[0])
         tweets = tweets.encode('utf-8')
         with codecs.open(datasetfile.split('.xml')[0]+'.txt', 'wb', encoding='utf-8') as txt:
@@ -31,7 +32,7 @@ def ner(datasetfile, format, language):
         dataset = etree.parse(datasetfile)
         for tweet in dataset.xpath('//tweet'):
             tweetText = tweet.xpath('./text()')[0]
-            tweets += tweetText+'\n'
+            tweets += ' '.join(re.findall(r"[\w:/!#$%&*+,\-:;?@^_`{|}~.]+|[\"'()[\]<=>]", tweetText))+"\n"
             tweetids.append(tweet.get('id'))
         tweets = tweets.encode('utf-8')
         with codecs.open(datasetfile.split('.xml')[0]+'.txt', 'wb', encoding='utf-8') as txt:
@@ -47,7 +48,7 @@ def ner(datasetfile, format, language):
         for s, p, o in a:
             if s.endswith(',') and p.endswith('isString'):
                 tweetid = s.split('#')[0].split('.xml/')[1]
-                tweetdict[tweetid] = o
+                tweetdict[tweetid] = ' '.join(re.findall(r"[\w:/!#$%&*+,\-:;?@^_`{|}~.]+|[\"'()[\]<=>]", o))
 
         for key in sorted(tweetdict):
             tweetids.append(key)
