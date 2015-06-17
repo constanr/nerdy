@@ -3,6 +3,7 @@ __author__ = 'croman'
 
 
 import codecs
+import rdflib
 
 import ritter_ner
 import stanford_ner
@@ -16,25 +17,24 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-def nif(niffile, ner='polyglot'):
+def nif(input, type, ner='polyglot'):
 
     if ner == 'ritter':
-        results = ritter_ner.ner(niffile+'.ttl', "nif")
+        results = ritter_ner.ner(input+'.ttl', type)
     elif ner == 'stanford-en':
-        results = stanford_ner.ner(niffile+'.ttl', "nif", 'english')
+        results = stanford_ner.ner(input+'.ttl', type, 'english')
         print results
     elif ner == 'stanford-es':
-        results = stanford_ner.ner(niffile+'.ttl', "nif", 'spanish')
+        results = stanford_ner.ner(input+'.ttl', type, 'spanish')
         print results
     elif ner == 'polyglot':
-        results = polyglot_ner.ner(niffile+'.ttl', 'nif')
+        results = polyglot_ner.ner(input+'.ttl', type)
     print "NER completado"
 
-    nifresult = resultstonif.convert(results, niffile+'.xml')
+    nifresult = resultstonif.convert(results, input+'.xml')
     print "Conversión a NIF completada"
 
     return nifresult
-
 
 def score(corpus, ner='stanford-en'):
 
@@ -47,8 +47,11 @@ def score(corpus, ner='stanford-en'):
     elif ner == 'stanford-es':
         results = stanford_ner.ner(corpus+'.ttl', "nif", 'spanish')
         print "NER completado"
-    elif ner == 'polyglot':
-        results = polyglot_ner.ner(corpus+'.ttl', 'nif')
+    elif ner == 'polyglot-en':
+        results = polyglot_ner.ner(corpus+'.ttl', 'nif', 'en')
+        print "NER completado"
+    elif ner == 'polyglot-es':
+        results = polyglot_ner.ner(corpus+'.ttl', 'nif', 'es')
         print "NER completado"
     elif ner == 'voting':
         results = voting(corpus)
@@ -90,8 +93,6 @@ def voting(corpus):
             print ner_results[0].splitlines()[x]
             print ner_results[1].splitlines()[x]
 
-
-
     voting_results = ''
     for x in range(0, len(ner_results[0].splitlines())):
         inEntity = False
@@ -120,12 +121,44 @@ def voting(corpus):
     print voting_results
     return voting_results
 
+def service(input, classifier):
+    filename='nerdy-input.txt'
+    with codecs.open(filename, 'wb', encoding='utf-8') as inputfile:
+        inputfile.write(input)
+    results = nif(filename, 'text', classifier)
+    a = rdflib.Graph()
+    a.parse(filename, format='n3')
+    entities = []
+    types = []
+    startIndexes = []
+    endIndexes = []
+    tweetdict = {}
+    tweetids = {}
+    tweets = "" #necesario?
+
+    for s, p, o in a:
+        if s.endswith(',') and p.endswith('isString'):
+            tweetid = s.split('#')[0].split('.xml/')[1]
+            tweetdict[tweetid] = o
+
+    for key in sorted(tweetdict):
+        tweetids.append(key)
+        tweets += tweetdict[key]+'\n'
+    tweets = tweets.encode('utf-8')
+
+
+    return (entities, types, startIndexes, endIndexes)
+
+
+
+
+
 #print 'Brian: \n'+score('Brian Collection')
 #print '\nMena: \n'+score('Mena Collection')
 #print '\nMicroposts2014: \n'+score('Microposts2014_Collection_train')
 #print 'Test: \n'+score('testingcorpus')
 #print voting('testingcorpus')
-print score('Mena Collection2', 'voting')
+print score('Mena Collection', 'polyglot-en')
 
 #print 'Brian: \n'+nif('Mena Collection')
 #print nif('Brian Collection', 'stanford')
