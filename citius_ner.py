@@ -39,11 +39,12 @@ def ner(datasetfile, format, language):
         print tweets
 
     elif format == "text":
-        with codecs.open('nerdy-input.txt', 'wb', encoding='utf-8') as txt:
-            txt.write(datasetfile)
+        tweets = datasetfile
 
-
-    txtname = datasetfile.split('.ttl')[0]+'.txt'
+    if format == "text":
+        txtname = 'nerdy-input.txt'
+    else:
+        txtname = datasetfile.split('.ttl')[0]+'.txt'
     with codecs.open(txtname, 'wb', encoding='utf-8') as txt:
         tweets = tweets.decode('utf-8')
         txt.write(tweets)
@@ -54,7 +55,40 @@ def ner(datasetfile, format, language):
                                 stderr=subprocess.STDOUT)
     results, err = citius.communicate()
     print results
+    finalresults = ''
+    entities = []
+    y = 0
+    for x in range(0,len(results.splitlines()[1:])):
+        words = results.splitlines()[1:][x].split()
+        if len(words)<1:
+            entities.append('||'+str(y)+'\n')
+            continue
+        entity = ''
+        if len(words)<3 or not words[2].startswith('NP'):
+            entity = 'O'
+        elif words[2][4]=='S':
+            entity = 'PERSON'
+        elif words[2][4]=='G':
+            entity = 'LOCATION'
+        elif words[2][4]=='O':
+            entity = 'ORGANIZATION'
+        elif words[2][4]=='V':
+            entity = 'OTHER'
+        first = True
+        for w in words[0].split('_'):
+            if entity == 'O':
+                type = entity
+            elif first:
+                type = 'B-'+entity
+                first = False
+            else:
+                type = 'I-'+entity
+            entities.append(w+'/'+type)
+    finalresults = ' '.join(entities)
+
+    return finalresults
+
     #print len(results)
     #print results.splitlines()
 
-ner('Microposts2014_Collection_train.ttl', 'nif', 'en')
+#print ner('Microposts2014_Collection_train.ttl', 'nif', 'es')

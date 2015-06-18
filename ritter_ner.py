@@ -65,10 +65,13 @@ def ner(dataset, format):
     idresults = ''
 
     for x in range(0, len(lines[:-1])):
-        line = lines[x]+" ||"+tweetids[x]+"\n"
+        if tweetids:
+            line = lines[x]+" ||"+tweetids[x]+"\n"
+        else:
+            line = lines[x]+"\n"
         idresults += line
 
     #print idresults
     return idresults
 
-print ner('This is a test string Cristiano Ronaldo, Chris Vuit and Jonah Ryan proudly present Mahahah Inc', 'text')
+#print ner('This is a test string Cristiano Ronaldo, Chris Vuit and Jonah Ryan proudly present Microsoft Industries in Spain', 'text')

@@ -3,18 +3,18 @@ __author__ = 'croman'
 
 import rdflib
 from lxml import etree
-from nltk.tag.stanford import NERTagger
+from nltk.tag.stanford import StanfordNERTagger
 import re
-import codecs
+
 
 def ner(datasetfile, format, language):
 
     tweets = ""
     tweetids = []
     if language == 'english':
-        st = NERTagger('classifiers/english.all.3class.distsim.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
+        st = StanfordNERTagger('classifiers/english.all.3class.distsim.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
     elif language == 'spanish':
-        st = NERTagger('classifiers/spanish.ancora.distsim.s512.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
+        st = StanfordNERTagger('classifiers/spanish.ancora.distsim.s512.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
 
     if format == 'xml':
 
@@ -67,21 +67,24 @@ def ner(datasetfile, format, language):
         tagged.append(st.tag(tweet))
         print tagged[-1]
     print len(tagged)
-    for x in range(0, len(tagged)):
-        inEntity = False
-        for line in tagged[x]:
-            for (word, entity) in line:
-                if entity != 'O' and inEntity:
-                    entity = 'I-'+entity
-                elif entity != 'O' and inEntity == False:
-                    entity = 'B-'+entity
-                    inEntity = True
-                else:
-                    inEntity = False
-                results += word + '/' + entity + ' '
-        results += "||"+tweetids[x]+"\n"
+
+    inEntity = False
+    for line in tagged:
+        print line
+        for (word, entity) in line:
+            if entity != 'O' and inEntity:
+                entity = 'I-'+entity
+            elif entity != 'O' and inEntity == False:
+                entity = 'B-'+entity
+                inEntity = True
+            else:
+                inEntity = False
+            results += word + '/' + entity + ' '
+    if tweetids:
+        results += "||"+tweetids[x]
+    results += "\n"
 
     print results
     return results
 
-print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Inc", "text", "spanish")
+#print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Industries", "text", "spanish")

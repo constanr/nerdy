@@ -3,13 +3,14 @@ __author__ = 'croman'
 
 
 import codecs
-import rdflib
+import sys
 
 import ritter_ner
 import stanford_ner
 import validator
 import resultstonif
 import polyglot_ner
+import citius_ner
 
 from sklearn.cross_validation import cross_val_score
 from sklearn.datasets import load_iris
@@ -18,20 +19,33 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def nif(input, type, ner='polyglot'):
+    print ner
 
     if ner == 'ritter':
-        results = ritter_ner.ner(input+'.ttl', type)
+        results = ritter_ner.ner(input, type)
     elif ner == 'stanford-en':
-        results = stanford_ner.ner(input+'.ttl', type, 'english')
-        print results
+        results = stanford_ner.ner(input, type, 'english')
     elif ner == 'stanford-es':
-        results = stanford_ner.ner(input+'.ttl', type, 'spanish')
+        results = stanford_ner.ner(input, type, 'spanish')
+    elif ner == 'polyglot-en':
+        results = polyglot_ner.ner(input, type, 'en')
+    elif ner == 'polyglot-es':
+        results = polyglot_ner.ner(input, type, 'es')
+    elif ner == 'citius-en':
+        results = citius_ner.ner(input, type, 'en')
         print results
-    elif ner == 'polyglot':
-        results = polyglot_ner.ner(input+'.ttl', type)
+    elif ner == 'citius-es':
+        results = citius_ner.ner(input, type, 'es')
+    elif ner == 'voting':
+        results = voting(input)
+        print "NER completado"
     print "NER completado"
+    if type == 'text':
+        filename = 'nifresults.ttl'
+    else:
+        filename = input
 
-    nifresult = resultstonif.convert(results, input+'.xml')
+    nifresult = resultstonif.convert(results, filename+'.xml')
     print "Conversión a NIF completada"
 
     return nifresult
@@ -52,6 +66,12 @@ def score(corpus, ner='stanford-en'):
         print "NER completado"
     elif ner == 'polyglot-es':
         results = polyglot_ner.ner(corpus+'.ttl', 'nif', 'es')
+        print "NER completado"
+    elif ner == 'citius-en':
+        results = citius_ner.ner(corpus+'.ttl', 'nif', 'en')
+        print "NER completado"
+    elif ner == 'citius-es':
+        results = citius_ner.ner(corpus+'.ttl', 'nif', 'es')
         print "NER completado"
     elif ner == 'voting':
         results = voting(corpus)
@@ -122,32 +142,79 @@ def voting(corpus):
     return voting_results
 
 def service(input, classifier):
-    results = nif(input, 'text', classifier)
-
-    a = rdflib.Graph()
-    a.parse(filename, format='n3')
+    print classifier
+    if classifier == 'ritter':
+        results = ritter_ner.ner(input, 'text')
+    elif classifier == 'stanford-en':
+        results = stanford_ner.ner(input, 'text', 'english')
+    elif classifier == 'stanford-es':
+        results = stanford_ner.ner(input, 'text', 'spanish')
+    elif classifier == 'polyglot-en':
+        results = polyglot_ner.ner(input, 'text', 'en')
+    elif classifier == 'polyglot-es':
+        results = polyglot_ner.ner(input, 'text', 'es')
+    elif classifier == 'citius-en':
+        results = citius_ner.ner(input, 'text', 'en')
+    elif classifier == 'citius-es':
+        results = citius_ner.ner(input, 'text', 'es')
+    print results
     entities = []
     types = []
     startIndexes = []
     endIndexes = []
-    tweetdict = {}
-    tweetids = {}
-    tweets = "" #necesario?
 
-    for s, p, o in a:
-        if s.endswith(',') and p.endswith('isString'):
-            tweetid = s.split('#')[0].split('.xml/')[1]
-            tweetdict[tweetid] = o
+    words = results.split()
+    inEntity = False
+    entity = ''
+    index = 0
 
-    for key in sorted(tweetdict):
-        tweetids.append(key)
-        tweets += tweetdict[key]+'\n'
-    tweets = tweets.encode('utf-8')
+    for word in words:
 
+        if word.__contains__('B-'):
+            w = word.split("/B-",1)[0]
+            type = word.split("/B-")[1]
+            if inEntity == True:
+                endIndexes.append(index-1)
+                entities.append(entity)
+                types.append(type)
+                entity = ''
+                inEntity = False
+
+            startIndexes.append(index)
+            index += len(w) + 1
+            entity += w
+            inEntity = True
+
+        elif word.__contains__('I-'):
+            w = word.split("/I-",1)[0]
+            index += len(w) + 1
+            entity += ' '
+            entity += w
+
+        elif inEntity == True:
+            endIndexes.append(index-1)
+            if not word.startswith('||'):
+                w = word.split("/O",1)[0]
+                index += len(w) + 1
+            entities.append(entity)
+            types.append(type)
+            entity = ''
+            inEntity = False
+
+        elif word.__contains__("/O"):
+            w = word.split("/O",1)[0]
+            index += len(w) + 1
+    if inEntity == True:
+        endIndexes.append(index)
+        types.append(type)
+        entities.append(entity)
+        entity = ''
+        inEntity = False
 
     return (entities, types, startIndexes, endIndexes)
 
-
+if __name__ == "__main__":
+    service(sys.argv[0], sys.argv[1])
 
 
 
@@ -156,7 +223,8 @@ def service(input, classifier):
 #print '\nMicroposts2014: \n'+score('Microposts2014_Collection_train')
 #print 'Test: \n'+score('testingcorpus')
 #print voting('testingcorpus')
-print score('Mena Collection', 'polyglot-en')
+#print score('Microposts2014_Collection_train', 'polyglot-en')
+print service('Cristiano Ronaldo scored last year to Barcelona', 'stanford-es')
 
 #print 'Brian: \n'+nif('Mena Collection')
 #print nif('Brian Collection', 'stanford')

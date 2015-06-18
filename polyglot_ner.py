@@ -59,8 +59,10 @@ def ner(datasetfile, format, language):
             tweets = tweets.decode('utf-8')
             txt.write(tweets)
     elif format == "text":
-        with codecs.open('nerdy-input.txt', 'wb', encoding='utf-8') as txt:
+        filename = 'nerdy-input.txt'
+        with codecs.open(filename, 'wb', encoding='utf-8') as txt:
             txt.write(datasetfile)
+            datasetfile = 'nerdy-input.ttl'
 
 
 
@@ -91,7 +93,10 @@ def ner(datasetfile, format, language):
             else:
                 inEntity = False
             results += word + u'/' + entity + u' '
-        results += u"||"+tweetids[x]+u"\n"
+        if tweetids:
+            results += u"||"+tweetids[x]
+        results += u"\n"
     return results
 
-print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Inc", "text", "es")
+#print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Inc", "text", "es")
+#print ner("Barack Obama is the president of the United States of America and the leader of The Beatles", "text", "en")

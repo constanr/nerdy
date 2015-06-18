@@ -28,7 +28,6 @@ def convert(nerfile, corpusfile):
 
         for word in words:
 
-
             if word.__contains__('B-'):
                 w = word.split("/B-",1)[0]
                 tweet += w
@@ -98,13 +97,13 @@ def convert(nerfile, corpusfile):
     results += "@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .\n"
     results += "@prefix itsrdf: <http://www.w3.org/2005/11/its/rdf#> .\n\n"
 
-    results += "<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/"+corpusfile+"#char=0,>\n"
+    results += "<"+corpusfile+"#char=0,>\n"
     results += "\ta nif:String , nif:Context , nif:RFC5147String ;\n"
-    results += "\tnif:sourceUrl <https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/"+corpusfile+"/> .\n\n"
+    results += "\tnif:sourceUrl <"+corpusfile+"/> .\n\n"
 
     for x in range(0,len(tweets)):
 
-        results += "<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/"+corpusfile+"/"+tweetids[x]+"#char=0,>\n"
+        results += "<"+corpusfile+"/"+tweetids[x]+"#char=0,>\n"
         results += "\ta nif:String , nif:Context , nif:RFC5147String ;\n"
         results += "\tnif:isString \"\"\""+tweets[x]+"\"\"\" ;\n"
         results += "\tnif:beginIndex \"0\"^^xsd:nonNegativeInteger ;\n"
@@ -112,7 +111,7 @@ def convert(nerfile, corpusfile):
 
         for y in range(0,len(entities[x])):
             #print startIndexes[x], endIndexes[x], entities[x]
-            results += "<https://github.com/badiehm/TwitterNEED/archive/MasterBranch.zip/"+corpusfile+"/"+tweetids[x]+"#char="+str(startIndexes[x][y])+","+str(endIndexes[x][y])+">\n"
+            results += "<"+corpusfile+"/"+tweetids[x]+"#char="+str(startIndexes[x][y])+","+str(endIndexes[x][y])+">\n"
             results += "\ta nif:String , nif:RFC5147String ;\n"
             results += "\tnif:anchorOf \"\"\""+entities[x][y]+"\"\"\" ;\n"
             results += "\tnif:beginIndex \""+str(startIndexes[x][y])+"\"^^xsd:nonNegativeInteger ;\n"
