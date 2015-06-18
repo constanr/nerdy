@@ -38,6 +38,11 @@ def ner(datasetfile, format, language):
         tweets = tweets.encode('utf-8')
         print tweets
 
+    elif format == "text":
+        with codecs.open('nerdy-input.txt', 'wb', encoding='utf-8') as txt:
+            txt.write(datasetfile)
+
+
     txtname = datasetfile.split('.ttl')[0]+'.txt'
     with codecs.open(txtname, 'wb', encoding='utf-8') as txt:
         tweets = tweets.decode('utf-8')

@@ -5,6 +5,7 @@ import rdflib
 from lxml import etree
 from nltk.tag.stanford import NERTagger
 import re
+import codecs
 
 def ner(datasetfile, format, language):
 
@@ -41,6 +42,9 @@ def ner(datasetfile, format, language):
             tweets += tweetdict[key]+'\n'
         tweets = tweets.encode('utf-8')
         print tweets
+
+    elif format == "text":
+        tweets = datasetfile
 
     tweetlist = []
     for t in tweets.splitlines():
@@ -79,3 +83,5 @@ def ner(datasetfile, format, language):
 
     print results
     return results
+
+print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Inc", "text", "spanish")

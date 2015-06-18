@@ -122,10 +122,8 @@ def voting(corpus):
     return voting_results
 
 def service(input, classifier):
-    filename='nerdy-input.txt'
-    with codecs.open(filename, 'wb', encoding='utf-8') as inputfile:
-        inputfile.write(input)
-    results = nif(filename, 'text', classifier)
+    results = nif(input, 'text', classifier)
+
     a = rdflib.Graph()
     a.parse(filename, format='n3')
     entities = []

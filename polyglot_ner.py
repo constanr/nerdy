@@ -58,6 +58,9 @@ def ner(datasetfile, format, language):
         with codecs.open(datasetfile.split('.ttl')[0]+'.txt', 'wb', encoding='utf-8') as txt:
             tweets = tweets.decode('utf-8')
             txt.write(tweets)
+    elif format == "text":
+        with codecs.open('nerdy-input.txt', 'wb', encoding='utf-8') as txt:
+            txt.write(datasetfile)
 
 
 
@@ -90,3 +93,5 @@ def ner(datasetfile, format, language):
             results += word + u'/' + entity + u' '
         results += u"||"+tweetids[x]+u"\n"
     return results
+
+print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Inc", "text", "es")
