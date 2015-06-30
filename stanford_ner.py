@@ -5,16 +5,20 @@ import rdflib
 from lxml import etree
 from nltk.tag.stanford import StanfordNERTagger
 import re
+import os
 
+java_path = "/usr/lib/jvm/java-8-oracle/jre/bin/java" # replace this
+os.environ['JAVAHOME'] = java_path
+BASEPATH = os.path.dirname(os.path.abspath(__file__))
 
 def ner(datasetfile, format, language):
 
     tweets = ""
     tweetids = []
     if language == 'english':
-        st = StanfordNERTagger('classifiers/english.all.3class.distsim.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
+        st = StanfordNERTagger(BASEPATH+'/classifiers/english.all.3class.distsim.crf.ser.gz', BASEPATH+'/classifiers/stanford-ner.jar', encoding='utf8')
     elif language == 'spanish':
-        st = StanfordNERTagger('classifiers/spanish.ancora.distsim.s512.crf.ser.gz', 'classifiers/stanford-ner.jar', encoding='utf8')
+        st = StanfordNERTagger(BASEPATH+'/classifiers/spanish.ancora.distsim.s512.crf.ser.gz', BASEPATH+'/classifiers/stanford-ner.jar', encoding='utf8')
 
     if format == 'xml':
 
@@ -41,7 +45,7 @@ def ner(datasetfile, format, language):
             tweetids.append(key)
             tweets += tweetdict[key]+'\n'
         tweets = tweets.encode('utf-8')
-        print tweets
+        #print tweets
 
     elif format == "text":
         tweets = datasetfile
@@ -56,7 +60,7 @@ def ner(datasetfile, format, language):
                 newtweet.append(word[-1])
             else:
                 newtweet.append(word)
-        print newtweet
+        #print newtweet
         tweetlist.append(newtweet)
 
 
@@ -65,12 +69,12 @@ def ner(datasetfile, format, language):
 
     for tweet in tweetlist:
         tagged.append(st.tag(tweet))
-        print tagged[-1]
-    print len(tagged)
+        #print tagged[-1]
+    #print len(tagged)
 
     inEntity = False
     for line in tagged:
-        print line
+        #print line
         for (word, entity) in line:
             if entity != 'O' and inEntity:
                 entity = 'I-'+entity
@@ -84,7 +88,9 @@ def ner(datasetfile, format, language):
         results += "||"+tweetids[x]
     results += "\n"
 
-    print results
+    #print results
     return results
 
 #print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Industries", "text", "spanish")
+#print ner('El gobierno de Brasil condecoro a Ronaldo en Rio de Janeiro', 'text', 'spanish')
+#print ner('Messi scored three goals against Chelsea. Mourinho must be angry.', 'text', 'english')

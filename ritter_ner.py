@@ -51,7 +51,7 @@ def ner(dataset, format):
 
     os.environ['PYTHONIOENCODING'] = 'utf-8'
     os.environ["TWITTER_NLP"] = "/home/croman/PycharmProjects/twitter_nlp-master/"
-    ner = subprocess.Popen(['python', '/home/croman/PycharmProjects/twitter_nlp-master/python/ner/extractEntities2.py'],
+    ner = subprocess.Popen(['python', '/home/croman/PycharmProjects/twitter_nlp-master/python/ner/extractEntities2.py', '--classify'],
                            stdin=subprocess.PIPE,
                            stdout=subprocess.PIPE,
                            stderr=subprocess.STDOUT)
@@ -74,4 +74,4 @@ def ner(dataset, format):
     #print idresults
     return idresults
 
-#print ner('This is a test string Cristiano Ronaldo, Chris Vuit and Jonah Ryan proudly present Microsoft Industries in Spain', 'text')
+#print ner('Messi scored three goals against Chelsea. Mourinho must be angry.', 'text')

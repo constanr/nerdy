@@ -6,6 +6,7 @@ from lxml import etree
 import rdflib
 import subprocess
 import os
+BASEPATH = os.path.dirname(os.path.abspath(__file__))
 
 def ner(datasetfile, format, language):
     tweets = ""
@@ -45,16 +46,17 @@ def ner(datasetfile, format, language):
         txtname = 'nerdy-input.txt'
     else:
         txtname = datasetfile.split('.ttl')[0]+'.txt'
-    with codecs.open(txtname, 'wb', encoding='utf-8') as txt:
-        tweets = tweets.decode('utf-8')
+    with codecs.open(BASEPATH+'/'+txtname, 'wb', encoding='utf-8') as txt:
         txt.write(tweets)
-    os.chdir('classifiers/CitiusTools')
-    citius = subprocess.Popen(['./nec.sh', language, '../../'+txtname],
+    os.chdir(BASEPATH+'/classifiers/CitiusTools')
+    citius = subprocess.Popen(['./nec.sh', language, BASEPATH+'/'+txtname],
                                 stdin=subprocess.PIPE,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
     results, err = citius.communicate()
+    subprocess.Popen(['rm', BASEPATH+'/'+txtname])
     print results
+    print "ERROR: ",err
     finalresults = ''
     entities = []
     y = 0
@@ -92,3 +94,5 @@ def ner(datasetfile, format, language):
     #print results.splitlines()
 
 #print ner('Microposts2014_Collection_train.ttl', 'nif', 'es')
+#print ner('El gobierno de Brasil condecoro a Ronaldo en Rio de Janeiro', 'text', 'es')
+#print ner('Messi scored three goals against Chelsea. Mourinho must be angry.', 'text', 'en')

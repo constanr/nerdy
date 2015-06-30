@@ -157,7 +157,7 @@ def service(input, classifier):
         results = citius_ner.ner(input, 'text', 'en')
     elif classifier == 'citius-es':
         results = citius_ner.ner(input, 'text', 'es')
-    print results
+    #print results
     entities = []
     types = []
     startIndexes = []
@@ -170,8 +170,9 @@ def service(input, classifier):
 
     for word in words:
 
-        if word.__contains__('B-'):
-            w = word.split("/B-",1)[0]
+        if "/B-" in word:
+            #print "WORD: ", word
+            w = word.split("/B-")[0]
             type = word.split("/B-")[1]
             if inEntity == True:
                 endIndexes.append(index-1)
@@ -185,7 +186,7 @@ def service(input, classifier):
             entity += w
             inEntity = True
 
-        elif word.__contains__('I-'):
+        elif "/I-" in word:
             w = word.split("/I-",1)[0]
             index += len(w) + 1
             entity += ' '
@@ -201,7 +202,7 @@ def service(input, classifier):
             entity = ''
             inEntity = False
 
-        elif word.__contains__("/O"):
+        elif "/O" in word:
             w = word.split("/O",1)[0]
             index += len(w) + 1
     if inEntity == True:
@@ -213,8 +214,7 @@ def service(input, classifier):
 
     return (entities, types, startIndexes, endIndexes)
 
-if __name__ == "__main__":
-    service(sys.argv[0], sys.argv[1])
+
 
 
 
@@ -224,7 +224,9 @@ if __name__ == "__main__":
 #print 'Test: \n'+score('testingcorpus')
 #print voting('testingcorpus')
 #print score('Microposts2014_Collection_train', 'polyglot-en')
-print service('Cristiano Ronaldo scored last year to Barcelona', 'stanford-es')
+"""with codecs.open("datasets/esp.testa.out", "rb", encoding="utf-8") as inputfile:
+    i = inputfile.read()
+    print service(i, 'citius-es')"""
 
 #print 'Brian: \n'+nif('Mena Collection')
 #print nif('Brian Collection', 'stanford')

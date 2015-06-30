@@ -100,3 +100,5 @@ def ner(datasetfile, format, language):
 
 #print ner("Xavi marco un gol a Cristiano y Casillas es de Apple Inc", "text", "es")
 #print ner("Barack Obama is the president of the United States of America and the leader of The Beatles", "text", "en")
+#print ner('El gobierno de Brasil condecoro a Ronaldo en Rio de Janeiro', 'text', 'es')
+#print ner('Messi scored three goals against Chelsea. Mourinho must be angry.', 'text', 'en')
