@@ -1,16 +1,8 @@
 __author__ = 'croman'
 # -*- coding: utf-8 -*-
 
-
 import codecs
-import sys
-
-import ritter_ner
-import stanford_ner
-import validator
-import resultstonif
-import polyglot_ner
-import citius_ner
+import ritter_ner, stanford_ner, validator, resultstonif, polyglot_ner, citius_ner
 
 from sklearn.cross_validation import cross_val_score
 from sklearn.datasets import load_iris
@@ -18,7 +10,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-def nif(input, type, ner='polyglot'):
+def nif(input, type, ner):
     print ner
 
     if ner == 'ritter':
@@ -33,16 +25,15 @@ def nif(input, type, ner='polyglot'):
         results = polyglot_ner.ner(input, type, 'es')
     elif ner == 'citius-en':
         results = citius_ner.ner(input, type, 'en')
-        print results
     elif ner == 'citius-es':
         results = citius_ner.ner(input, type, 'es')
     elif ner == 'voting':
         results = voting(input)
-        print "NER completado"
     print "NER completado"
+
     if type == 'text':
         filename = 'nifresults.ttl'
-    else:
+    elif type == 'file':
         filename = input
 
     nifresult = resultstonif.convert(results, filename+'.xml')
@@ -50,7 +41,7 @@ def nif(input, type, ner='polyglot'):
 
     return nifresult
 
-def score(corpus, ner='stanford-en'):
+def score(corpus, ner):
 
     if ner == 'ritter':
         results = ritter_ner.ner(corpus+'.ttl', "nif")
@@ -79,7 +70,6 @@ def score(corpus, ner='stanford-en'):
 
     nifresults = resultstonif.convert(results, corpus+'.xml')
     print "Conversión a NIF completada"
-    #print nifresults
 
     resultspath = corpus+'-results.ttl'
     with codecs.open(resultspath, 'wb', encoding='utf-8') as resultsfile:
@@ -90,15 +80,6 @@ def score(corpus, ner='stanford-en'):
     print "Validación completada"
 
     return scores
-
-def adaboost(corpus):
-    vectorizer = TfidfVectorizer()
-    #vectors = vectorizer.fit_transform()
-    iris = load_iris()
-    print iris.data
-    clf = AdaBoostClassifier(n_estimators=100)
-    scores = cross_val_score(clf, iris.data, iris.target)
-    print scores.mean()
 
 def voting(corpus):
     ner_results = []
@@ -231,4 +212,5 @@ def service(input, classifier):
 #print 'Brian: \n'+nif('Mena Collection')
 #print nif('Brian Collection', 'stanford')
 #print adaboost('Brian Collection')
-#print nif('Mena Collection', 'polyglot')
+print nif('datasets/Mena Collection', 'file', 'polyglot-en')
+

@@ -20,14 +20,14 @@ def validate(goldenset, results):
         offsets = {}
         multiword = {}
 
-        #Se extraen los tweets
+        # Tweet extraction
         for s, p, o in a:
 
             if s.endswith(',') and p.endswith('isString'):
                 id = s.split('#')[0]
                 tweets[id] = o
 
-        #Se extraen las entidades multipalabra
+        # Multiword entities are extracted
         for s, p, o in a:
             if p.endswith('anchorOf'):
                 id = s.split('#')[0]
@@ -53,7 +53,7 @@ def validate(goldenset, results):
         """for m in multiword:
                 print m, multiword[m]"""
 
-        #Calcula la precisión del sistema
+        # Calculates the precision of the system
         def precision():
 
             fullmentions = 0
@@ -63,7 +63,7 @@ def validate(goldenset, results):
 
 
 
-            #Extrae las menciones anotadas en el golden set.
+            # The golden set annotated mentions are extracted
             for s, p, o in a:
                 if p.endswith('anchorOf'):
                     id = s.split('#')[0]
@@ -72,7 +72,7 @@ def validate(goldenset, results):
                         annotatedmentions[id] = []
                     annotatedmentions[id].append(o)
 
-            #Compara las menciones que obtiene el sistema con las anotadas en el golden set
+            # Compares the mentions obtained by the system with the ones annotated in the golden set
             for s, p, o in r:
                 #print s,p,o
 
@@ -83,18 +83,18 @@ def validate(goldenset, results):
                     #print id
 
                     if id in annotatedmentions.keys():
-                        #Comprueba las menciones que coinciden completamente
+                        # Checks the mentions that match fully
                         if o in annotatedmentions[id]:
                             fullmentions += 1
                         else:
                             scored = False
                             for m in annotatedmentions[id]:
-                                #Comprueba las menciones que coinciden parcialmente.
+                                # Check the mentions that match partially
                                 if o in m:
                                     partialmentions += 1
                                     scored = True
                                     break
-                            #Comprueba las menciones formadas por varias entidades del golden set.
+                            # Check the mentions formed by more than one entities of the golden set
                             if scored==False and multiword.has_key(id):
                                 #print multiword[id]
                                 for multientity in multiword[id]:
@@ -117,7 +117,7 @@ def validate(goldenset, results):
             partialmentions = 0
             resultmentions = {}
 
-            #Extrae las menciones obtenidas por el sistema.
+            # Extracts the mentions obtained by the system
             for s, p, o in r:
 
                 if p.endswith('anchorOf'):
@@ -126,23 +126,23 @@ def validate(goldenset, results):
                         resultmentions[id] = []
                     resultmentions[id].append(o)
 
-            #Compara las menciones que obtiene el sistema con las anotadas en el golden set
+            # Compares the mentions obtained by the system with the ones annotated in the golden set
             for s, p, o in a:
 
                 if p.endswith('anchorOf'):
                     id = s.split('#')[0]
-                    #Comprueba las menciones que coinciden completamente
+                    # Checks the mentions that match fully
                     if id in resultmentions.keys() and o in resultmentions[id]:
                         fullmentions += 1
                     elif id in resultmentions.keys():
                         scored = False
                         for m in resultmentions[id]:
-                        #Comprueba las menciones que coinciden parcialmente
+                        # Check the mentions that match partially
                             if m in o:
                                partialmentions += 1
                                scored = True
                                break
-                        #Comprueba las menciones formadas por varias entidades del golden set.
+                        # Check the mentions formed by more than one entities of the golden set
                         if scored==False and multiword.has_key(id):
                             #print multiword[id]
                             for multientity in multiword[id]:
