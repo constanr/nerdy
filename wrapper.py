@@ -212,5 +212,5 @@ def service(input, classifier):
 #print 'Brian: \n'+nif('Mena Collection')
 #print nif('Brian Collection', 'stanford')
 #print adaboost('Brian Collection')
-print nif('datasets/Mena Collection', 'file', 'polyglot-en')
+#print nif('datasets/Mena Collection', 'file', 'polyglot-en')
 
